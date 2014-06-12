@@ -1,0 +1,16 @@
+- cache [post, locale] do
+  a.list-group-item.post href=post_last_path(post)
+    .list-group-item-avatar
+      img.img-rounded alt="avatar" src=post.user.avatar.normal.url
+    .list-group-item-content
+      .list-group-item-heading
+        b = post.title
+      .text-muted
+        = post.user.name
+        = ' · '
+        = time_ago_tag post.created_at
+        - if post.category
+          = ' · '
+          = post.category.name
+        = ' · '
+        = t '.comments_count', count: post.comments_count

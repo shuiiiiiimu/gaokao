@@ -1,0 +1,24 @@
+- @page_title = t '.new_post'
+
+.main
+  .container
+    .row
+      .col-md-9
+        .panel
+          .panel-heading
+            h3.panel-title = t '.new_post'
+
+          .panel-body
+            = render 'form', post: @post
+
+      .col-md-3
+        .panel
+          .panel-heading
+            h4.panel-title
+              = t '.prompt'
+          .panel-body
+            //li
+            //  ' 支持表情，见<a href="http://www.emoji-cheat-sheet.com/" target="view_window">Emoji cheat sheet</a>
+            li
+             ' 支持 Markdown 格式, <a href="https://github.com/younghz/Markdown" target="view_window">教你发优美的帖子</a>
+        

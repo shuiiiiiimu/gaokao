@@ -1,0 +1,40 @@
+= form_for info, url: url_for([:admin, info]), html: { class: 'info-form' } do |f|
+  = render 'share/flash_messages'
+  = render 'share/form_error_messages', form: f
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control', tabIndex: 1
+  .form-group
+    = f.label :source
+    = f.text_field :source, class: 'form-control', tabIndex: 2
+  .form-group
+    = f.label :body
+    = markdown_area f, :body, tabIndex: 3
+  .clearfix
+    - if info.new_record?
+      = f.submit t('.create_info'), class: 'btn btn-success', tabIndex: 4
+    - else
+      = f.submit t('.save_changes'), class: 'btn btn-success', tabIndex: 4
+      .pull-right
+        a.btn.btn-danger href=admin_info_path(@info) data-method="delete" data-confirm=t('.permanently_delete_confirm')
+          = t '.permanently_delete'
+
+javascript:
+  $('form.info-form').validate({
+    rules: {
+      'info[title]': {
+        required: true
+      },
+      'info[body]': {
+        required: true
+      }
+    },
+    messages: {
+      'info[title]': {
+        required: '#{@info.errors.generate_message :title, :blank}'
+      },
+      'info[body]': {
+        required: '#{@info.errors.generate_message :body, :blank}'
+      }
+    }
+  });

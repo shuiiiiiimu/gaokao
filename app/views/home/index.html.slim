@@ -1,0 +1,72 @@
+- @page_title = t('.home')
+
+.main
+  .container
+    .section
+      .row
+      .clearfix
+
+        #myCarousel.carousel.slide data-ride="carousel"
+          ol.carousel-indicators
+            li.active data-slide-to="0" data-target="#myCarousel"
+            li data-slide-to="1" data-target="#myCarousel"
+            li data-slide-to="2" data-target="#myCarousel"
+          .carousel-inner
+            .item.active
+              img alt=("First slide") src="/assets/01.jpg"
+            .item
+              img alt=("Second slide") src="/assets/02.jpg"
+            .item
+              img alt=("Third slide") src="/assets/03.jpg"
+          a.left.carousel-control data-slide="prev" href="#myCarousel"
+            span.glyphicon.glyphicon-chevron-left
+          a.right.carousel-control data-slide="next" href="#myCarousel"
+            span.glyphicon.glyphicon-chevron-right
+        .section-heading
+          .thumbnail
+            .panel
+              .panel-header
+                h2
+                  '#{CONFIG['title']}
+              article.comment-body
+                h4
+                  ' &emsp;
+                  = t '.intro'
+        .section-body
+          .row
+            .col-md-3
+              .thumbnail
+                .panel
+                  .panel-header
+                    h2
+                      = t '.infos'
+                  article.comment-body
+                    h4
+                      = t '.infos_content'
+            .col-md-3
+              .thumbnail
+                .panel
+                  .panel-header
+                    h2
+                      = t '.topics'
+                  article.comment-body
+                    h4
+                      = t '.topics_content'
+            .col-md-3
+              .thumbnail
+                .panel
+                  .panel-header
+                    h2
+                      = t '.posts'
+                  article.comment-body
+                    h4
+                      = t '.posts_content'
+            .col-md-3
+              .thumbnail
+                .panel
+                  .panel-header
+                    h2
+                      = t '.about'
+                  article.comment-body
+                    h4
+                      = t '.about_content'

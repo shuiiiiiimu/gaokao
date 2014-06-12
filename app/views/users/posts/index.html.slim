@@ -1,0 +1,32 @@
+- @page_title = t '.user_s_posts', name: @user.name
+
+.main
+  .container
+    .row
+      .col-md-3
+        = render 'users/profile', user: @user
+        = render 'users/sidebar'
+      .col-md-9
+        #posts.panel
+          .panel-heading.clearfix
+            .pull-right
+              ul.nav.nav-pills
+                li class=('active' if action_name == 'index')
+                  a href=user_posts_path
+                    = t '.publish'
+                li class=('active' if action_name == 'likes')
+                  a href=likes_user_posts_path
+                    = t '.likes'
+            h3.panel-title
+              = t '.posts'
+          .panel-body
+            .list-group.list-group-campo
+              - if @posts.any?
+                = render partial: 'posts/post', collection: @posts
+              - else
+                .list-group-item.text-center.text-muted.empty-message
+                  = t '.no_post_yet'
+          - if @posts.total_pages > 1
+            .panel-footer.clearfix
+              .pull-right
+                = paginate @posts, theme: 'campo', params: { anchor: 'posts' }

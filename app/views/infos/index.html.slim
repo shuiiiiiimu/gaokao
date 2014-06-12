@@ -1,0 +1,21 @@
+- @page_title = t('.infos')
+
+.main
+  .container
+    .row
+      .col-md-12
+        .panel
+          .panel-heading.clearfix
+            h3.panel-title
+              = t '.list_infos'
+          .panel-body
+            .list-group.list-group-campo.recordable
+              - if @infos.any?
+                = render @infos
+              - else
+                .list-group-item.text-center.text-muted.empty-message
+                  = t '.no_info_yet'
+          - if @infos.total_pages > 1
+            .panel-footer.clearfix
+              .pull-right
+                = paginate @infos, theme: 'campo'

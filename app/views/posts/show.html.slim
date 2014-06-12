@@ -1,0 +1,132 @@
+- @page_title = @post.title
+
+.main
+  .container
+    .row
+      .col-md-9
+        .panel
+          .panel-heading
+            h1.panel-title = @post.title
+          .panel-body
+            - cache [@post, locale] do
+              .list-group.list-group-campo
+                .list-group-item.comment data-creator-id=@post.user_id
+                  a.list-group-item-avatar href=user_link(@post.user)
+                    img.img-rounded alt="avatar" src=@post.user.avatar.normal.url
+                  .list-group-item-content
+                    .list-group-item-heading
+                      a.comment-user href=user_link(@post.user)
+                        b = @post.user.name
+                        '
+                        = "@#{@post.user.username}"
+                      = ' · '
+                      a href=post_path(@post)
+                        = time_ago_tag @post.created_at
+                      - if @post.category
+                        = ' · '
+                        a href=categoried_posts_path(category_id: @post.category.slug)
+                          = @post.category.name
+                    article.comment-body
+                      = markdown_format @post.body
+                    .list-group-item-actions.clearfix
+                      .pull-right
+                        a.btn id="like-for-post-#{@post.id}" href=post_like_path(@post) data-remote="true" data-method="post"
+                          i.fa.fa-heart
+                          '
+                          span.count
+                            - if @post.likes_count > 0
+                              = @post.likes_count
+                        a.btn data-visible-to="creator" href=edit_post_path(@post)
+                          i.fa.fa-pencil
+                        a.btn data-visible-to="creator" href=trash_post_path(@post) data-remote="true" data-method="delete" data-confirm=t('.delete_confirm')
+                          i.fa.fa-trash-o
+
+        .panel#comments
+          .panel-heading
+            h3.panel-title
+              = t '.comments'
+          .panel-body
+            ul.list-group.list-group-campo id="comments-for-post-#{@post.id}"
+              - if @comments.any?
+                = render @comments
+              - else
+                li.list-group-item.text-center.text-muted.empty-message
+                  = t '.no_comment_yet'
+          - if @comments.total_pages > 1
+            .panel-footer.clearfix
+              .pull-right
+                = paginate @comments, theme: 'campo', params: { anchor: 'comments' }
+
+        .panel
+          .panel-body
+            - if login?
+              - unless current_user.locked?
+                .list-group.list-group-campo
+                  .list-group-item.comment
+                    a.list-group-item-avatar href=user_link(current_user)
+                      img.img-rounded alt="avatar" src=current_user.avatar.normal.url
+                    .list-group-item-content
+                      .list-group-item-heading
+                        a.comment-user href=user_link(current_user)
+                          b = current_user.name
+                          '
+                          = "@#{current_user.username}"
+                      = form_for @post.comments.new, url: post_comments_path(@post), remote: true do |f|
+                        .form-group
+                          = markdown_area f, :body
+                        = f.submit t('.add_this_comment'), class: 'btn btn-success', 'data-disable-with' => t('.add_this_comment')
+              - else
+                = t '.your_account_had_been_locked'
+            - else
+              a href=signup_path(return_to: request.fullpath)
+                = t '.sign_up'
+              '
+              = t '.or'
+              '
+              a href=login_path(return_to: request.fullpath)
+                = t '.login'
+              '
+              = t '.to_comment'
+
+      .col-md-3
+        - if login?
+          .panel
+            .panel-body
+              = render 'subscriptions/subscription', subscribable: @post
+
+        .panel
+          .panel-heading
+            h4.panel-title
+              = t '.related_posts'
+          .panel-body
+            - cache [@post, 'related_posts', locale] do
+              .list-group.list-group-campo
+                - more_like_this_posts = @post.more_like_this
+                - if more_like_this_posts.any?
+                  - more_like_this_posts.each do |post|
+                    a.list-group-item href=post_path(post)
+                      = post.title
+                - else
+                  .list-group-item.text-center.text-muted
+                    = t '.no_more_posts'
+
+- if login?
+  - if @post.liked_by?(current_user)
+    javascript:
+      campo.Likes.updateLike('post', #{@post.id});
+
+  javascript:
+    campo.Likes.updateLikes('comment', #{current_user.likes.where(likeable_type: 'Comment', likeable_id: @comments.pluck(:id)).pluck(:likeable_id)});
+
+    $('#new_comment').validate({
+      rules: {
+        'comment[body]': {
+          required: true
+        }
+      },
+      messages: {
+        'comment[body]': {
+          required: '#{Comment.new.errors.generate_message :body, :blank}'
+        }
+      }
+    });

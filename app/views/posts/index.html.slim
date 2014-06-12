@@ -1,0 +1,79 @@
+- case params[:tab]
+- when 'hot'
+  - @page_title = t('.hot_posts')
+- when 'newest'
+  - @page_title = t('.newest_posts')
+
+- if @category
+  - @page_title += " #{@category.name}"
+
+.main
+  .container
+    .row
+      .col-md-9
+        .panel
+          .panel-heading.clearfix
+            .pull-right
+              ul.nav.nav-pills
+                li class=('active' if params[:tab] == 'hot')
+                  a href=url_for(tab: 'hot')
+                    = t '.hot'
+                li class=('active' if params[:tab] == 'newest')
+                  a href=url_for(tab: 'newest')
+                    = t '.newest'
+            h3.panel-title
+              = @category.try(:name) || t('.all_categories')
+
+          - if @category && @category.description.present?
+            .panel-body
+              = markdown_format @category.description
+
+        .row
+          - if @posts.any?
+            - cache [@posts, locale] do
+              - @posts.in_groups_of(4, false) do |group|
+                  - group.each do |post|
+                    .col-md-3 id="post-#{post.id}"
+                      .thumbnail
+                        article.comment-body
+                          = markdown_format match(post.body)
+                          a.text-muted href=post_path(post)
+                            = markdown_format post.title.to_s[0..30]
+                          'By
+                          a.text-muted href=user_link(post.user)
+                            = post.user.name
+                          a.pull-right id="like-for-post-#{post.id}" href=post_like_path(post) data-remote="true" data-method="post"
+                            i.fa.fa-heart
+                            '
+                            span.count
+                              - if post.likes_count > 0
+                                = post.likes_count
+                          .text-muted.pull-right
+                            i.glyphicon.glyphicon-comment
+                            = post.comments_count
+                            '&emsp;
+                  .clearfix
+          - else
+            .list-group-item.text-center.text-muted.empty-message
+              = t '.no_post_yet'
+        - if @posts.total_pages > 1
+          .panel-footer.clearfix
+            .pull-right
+              = paginate @posts, theme: 'campo'
+
+      .col-md-3
+        = render 'search_form'
+        .panel
+          .panel-body
+            a.btn.btn-success.btn-block href=new_post_path(category_id: @category.try(:slug))
+              = t '.create_post'
+        .panel
+          .panel-body
+            ul.nav.nav-pills.nav-stacked
+              li class=('active' unless @category)
+                a href=posts_path
+                  = t '.all_categories'
+              - Category.where(:slug => 'S').order(topics_count: :desc).each do |category|
+                li class=('active' if category == @category)
+                  a href=categoried_posts_path(category_id: category.id)
+                    = category.name

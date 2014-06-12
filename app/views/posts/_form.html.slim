@@ -1,0 +1,39 @@
+= form_for @post, remote: true, html: { class: 'post-form' } do |f|
+  .row
+    .col-md-9
+      .form-group
+        = f.text_field :title, class: 'form-control', placeholder: t('.title'), tabIndex: 1
+    .col-md-3
+      .form-group
+        = f.collection_select :category_id, Category.where(:slug => 'S').order(topics_count: :desc), :id, :name, { include_blank: t('.no_category')}, class: 'form-control', tabIndex: 2
+  .form-group
+    = markdown_area f, :body, tabIndex: 3
+  - if post.new_record?
+    = f.submit t('.create_post'), class: 'btn btn-success', tabIndex: 4, 'data-disable-with' => t('.create_post')
+  - else
+    = f.submit t('.save_changes'), class: 'btn btn-success', tabIndex: 4, 'data-disable-with' => t('.save_changes')
+    '
+    a.btn.btn-default href=post_path(@post) tabIndex="5"
+      = t '.cancel'
+
+- form_id = @post.new_record? ? 'new_post' : "edit_post_#{@post.id}"
+
+javascript:
+  $('##{form_id}').validate({
+    rules: {
+      'post[title]': {
+        required: true
+      },
+      'post[body]': {
+        required: true
+      }
+    },
+    messages: {
+      'post[title]': {
+        required: '#{@post.errors.generate_message :title, :blank}'
+      },
+      'post[body]': {
+        required: '#{@post.errors.generate_message :body, :blank}'
+      }
+    }
+  });

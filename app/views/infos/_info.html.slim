@@ -1,0 +1,10 @@
+- cache [info, locale] do
+  a.list-group-item.info href=info_path(info)
+    .list-group-item-content
+      .list-group-item-heading
+        b = info.title
+      .text-muted
+        = ' · '
+        = time_ago_tag info.created_at
+        = ' ~ from:'
+        = info.source

@@ -1,0 +1,11 @@
+- @page_title = @info.title
+
+.main
+  .container
+    .row
+      .col-md-8.col-md-push-2
+        .panel
+          .panel-heading
+            h3.panel-title = @info.title
+          .panel-body
+            = render 'form', info: @info

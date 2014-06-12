@@ -1,0 +1,3 @@
+<% if @post.errors.empty? %>
+  Turbolinks.visit('<%= post_path(@post) %>');
+<% end %>

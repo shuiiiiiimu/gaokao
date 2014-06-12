@@ -1,0 +1,23 @@
+- @page_title = t '.infos'
+
+.main
+  .container
+    = render 'share/flash_messages'
+
+    .row
+      .col-md-8.col-md-push-2
+        .panel
+          .panel-heading.claerfix
+            .pull-right
+              a.btn.btn-default.btn-success href=new_admin_info_path
+                = t '.new_info'
+            h2.panel-title
+              = t '.infos'
+          .panel-body
+            .list-group.list-group-campo
+              - @infos.each do |info|
+                a.list-group-item href=admin_info_path(info)
+                  .list-group-item-heading
+                    b = info.title
+                    '
+                    span.text-muted = info.source

@@ -1,0 +1,463 @@
+
+
+Started GET "/" for 127.0.0.1 at 2014-06-12 21:27:29 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered home/index.html.slim within layouts/application (67.5ms)
+  [1m[36m (0.9ms)[0m  [1mSELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'[0m  [["user_id", 1]]
+Completed 200 OK in 347ms (Views: 274.8ms | ActiveRecord: 11.3ms | Elasticsearch: 0.0ms)
+
+
+Started GET "/assets/01.jpg" for 127.0.0.1 at 2014-06-12 21:27:29 +0800
+
+
+Started GET "/assets/03.jpg" for 127.0.0.1 at 2014-06-12 21:27:29 +0800
+
+
+Started GET "/assets/02.jpg" for 127.0.0.1 at 2014-06-12 21:27:29 +0800
+
+
+Started GET "/infos" for 127.0.0.1 at 2014-06-12 21:27:30 +0800
+Processing by InfosController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "infos"  LIMIT 20 OFFSET 0) subquery_for_count[0m
+  [1m[35mInfo Load (1.1ms)[0m  SELECT  "infos".* FROM "infos"   ORDER BY "infos"."created_at" DESC LIMIT 20 OFFSET 0
+  Rendered infos/_info.html.slim (5.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "infos"[0m
+  Rendered infos/index.html.slim within layouts/application (37.7ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'  [["user_id", 1]]
+  Rendered share/_user_confirm_required.html.slim (9.7ms)
+Completed 200 OK in 82ms (Views: 71.0ms | ActiveRecord: 6.1ms | Elasticsearch: 0.0ms)
+
+
+Started GET "/topics" for 127.0.0.1 at 2014-06-12 21:27:31 +0800
+Processing by TopicsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (1.3ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "topics"  WHERE "topics"."trashed" = 'f' LIMIT 20 OFFSET 0) subquery_for_count
+  [1m[36mTopic Load (1.7ms)[0m  [1mSELECT  "topics".* FROM "topics"  WHERE "topics"."trashed" = 'f'  ORDER BY "topics"."hot" DESC LIMIT 20 OFFSET 0[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (1, 2)
+  [1m[36mCategory Load (0.5ms)[0m  [1mSELECT "categories".* FROM "categories"  WHERE "categories"."id" IN (1, 2)[0m
+  Rendered topics/_topic.html.slim (56.8ms)
+  [1m[35m (0.8ms)[0m  SELECT COUNT(*) FROM "topics"  WHERE "topics"."trashed" = 'f'
+  Rendered topics/_search_form.html.slim (6.3ms)
+  [1m[36mCategory Load (2.2ms)[0m  [1mSELECT "categories".* FROM "categories"  WHERE "categories"."slug" = 'T'  ORDER BY "categories"."topics_count" DESC[0m
+  Rendered topics/index.html.slim within layouts/application (126.6ms)
+  [1m[35m (0.8ms)[0m  SELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'  [["user_id", 1]]
+  Rendered share/_user_confirm_required.html.slim (0.3ms)
+Completed 200 OK in 188ms (Views: 141.8ms | ActiveRecord: 13.4ms | Elasticsearch: 0.0ms)
+
+
+Started POST "/users/confirmation" for 127.0.0.1 at 2014-06-12 21:27:32 +0800
+Processing by Users::ConfirmationsController#create as JS
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered users/confirmations/create.js.erb (0.9ms)
+Completed 200 OK in 19ms (Views: 8.5ms | ActiveRecord: 0.7ms | Elasticsearch: 0.0ms)
+  [1m[36mUser Load (1.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered user_mailer/confirmation.html.slim (40.6ms)
+  Rendered user_mailer/confirmation.text.erb (2.9ms)
+
+UserMailer#confirmation: processed outbound mail in 191.8ms
+
+Sent mail to 765732980@qq.com (30020.9ms)
+Date: Thu, 12 Jun 2014 21:27:36 +0800
+From: no-reply@wgaokao.org
+To: 765732980@qq.com
+Message-ID: <5399aac838281_1d785bf338756e1@zhangsm-Lenovo-G470.mail>
+Subject: =?UTF-8?Q?=E9=82=AE=E7=AE=B1=E7=A1=AE=E8=AE=A4?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5399aac83517d_1d785bf3387553b";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5399aac83517d_1d785bf3387553b
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+5pyJ5Lq65L2/55So5L2g55qE6YKu566x5ZyoIGxvY2FsaG9zdDozMDAwIOaz
+qOWGjOW4kOWPt++8jOWmguaenOS4jeaYr+S9oO+8jOivt+W/veeVpeatpOmC
+ruS7tuOAggoK54K55Ye75LiL6Z2i55qE6ZO+5o6l56Gu6K6k6YKu566x5Zyw
+5Z2A77yaCgpodHRwOi8vbG9jYWxob3N0OjMwMDAvdXNlcnMvY29uZmlybWF0
+aW9uP3Rva2VuPUJBaGJCMmtHU1hVNkNWUnBiV1VOalpVY2dNNURRMjRLT2cx
+dVlXNXZYMjUxYldrQ3NRRTZEVzVoYm05ZlpHVnVhUVk2RFhOMVltMXBZM0p2
+SWdkRE1Eb0xiMlptYzJWMGFRS0FjRG9KZW05dVpVa2lDRU5UVkFZNkJrVlUt
+LWI2MWRkMzMyN2UyMzk5Y2Y1NzliZmM1ODEyYTM0ODI5ZjZhYzYyMDkKCg==
+
+----==_mimepart_5399aac83517d_1d785bf3387553b
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+PHA+5pyJ5Lq65L2/55So5L2g55qE6YKu566x5ZyoIGxvY2FsaG9zdDozMDAw
+IOazqOWGjOW4kOWPt++8jOWmguaenOS4jeaYr+S9oO+8jOivt+W/veeVpeat
+pOmCruS7tuOAgjwvcD4KCjxwPueCueWHu+S4i+mdoueahOmTvuaOpeehruiu
+pOmCrueuseWcsOWdgO+8mjwvcD4KCjxwPjxhIGhyZWY9Imh0dHA6Ly9sb2Nh
+bGhvc3Q6MzAwMC91c2Vycy9jb25maXJtYXRpb24/dG9rZW49QkFoYkIya0dT
+WFU2Q1ZScGJXVU5qWlVjZ0puOVFtNEtPZzF1WVc1dlgyNTFiV2tDMVFFNkRX
+NWhibTlmWkdWdWFRWTZEWE4xWW0xcFkzSnZJZ2RHa0RvTGIyWm1jMlYwYVFL
+QWNEb0plbTl1WlVraUNFTlRWQVk2QmtWVS0tNTcxMjBkYTkwOWYwZDgzMzg0
+NWIwYTNkMmNjYjU5ZTZlNDU2YzM3NiI+aHR0cDovL2xvY2FsaG9zdDozMDAw
+L3VzZXJzL2NvbmZpcm1hdGlvbj90b2tlbj1CQWhiQjJrR1NYVTZDVlJwYldV
+TmpaVWNnSm45UW00S09nMXVZVzV2WDI1MWJXa0MxUUU2RFc1aGJtOWZaR1Z1
+YVFZNkRYTjFZbTFwWTNKdklnZEdrRG9MYjJabWMyVjBhUUtBY0RvSmVtOXVa
+VWtpQ0VOVFZBWTZCa1ZVLS01NzEyMGRhOTA5ZjBkODMzODQ1YjBhM2QyY2Ni
+NTllNmU0NTZjMzc2PC9hPjwvcD4K
+
+----==_mimepart_5399aac83517d_1d785bf3387553b--
+
+Unable to deliver email [confirmation]: execution expired
+/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/net/smtp.rb:541:in `initialize'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/net/smtp.rb:541:in `open'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/net/smtp.rb:541:in `tcp_socket'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/net/smtp.rb:551:in `block in do_start'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/timeout.rb:91:in `block in timeout'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/timeout.rb:101:in `call'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/timeout.rb:101:in `timeout'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/net/smtp.rb:550:in `do_start'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/net/smtp.rb:520:in `start'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/mail-2.5.4/lib/mail/network/delivery_methods/smtp.rb:112:in `deliver!'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/mail-2.5.4/lib/mail/message.rb:2129:in `do_delivery'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/mail-2.5.4/lib/mail/message.rb:232:in `block in deliver'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/actionmailer-4.1.1/lib/action_mailer/base.rb:527:in `block in deliver_mail'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/activesupport-4.1.1/lib/active_support/notifications.rb:159:in `block in instrument'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/activesupport-4.1.1/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/activesupport-4.1.1/lib/active_support/notifications.rb:159:in `instrument'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/actionmailer-4.1.1/lib/action_mailer/base.rb:525:in `deliver_mail'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/mail-2.5.4/lib/mail/message.rb:232:in `deliver'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/resque_mailer-2.2.6/lib/resque_mailer.rb:49:in `perform'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/resque-1.25.1/lib/resque/job.rb:227:in `perform'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/resque-1.25.1/lib/resque/worker.rb:250:in `perform'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/resque-1.25.1/lib/resque/worker.rb:189:in `block in work'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/resque-1.25.1/lib/resque/worker.rb:166:in `loop'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/resque-1.25.1/lib/resque/worker.rb:166:in `work'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/resque-1.25.1/lib/resque/tasks.rb:41:in `block (2 levels) in <top (required)>'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/task.rb:240:in `call'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/task.rb:240:in `block in execute'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/task.rb:235:in `each'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/task.rb:235:in `execute'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/task.rb:179:in `block in invoke_with_call_chain'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/task.rb:172:in `invoke_with_call_chain'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/task.rb:165:in `invoke'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:150:in `invoke_task'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:106:in `block (2 levels) in top_level'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:106:in `each'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:106:in `block in top_level'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:115:in `run_with_threads'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:100:in `top_level'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:78:in `block in run'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:176:in `standard_exception_handling'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:75:in `run'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/bin/rake:33:in `<top (required)>'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/bin/rake:23:in `load'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/bin/rake:23:in `<main>'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/bin/ruby_executable_hooks:15:in `eval'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/bin/ruby_executable_hooks:15:in `<main>'
+
+
+Started GET "/infos" for 127.0.0.1 at 2014-06-12 21:31:04 +0800
+Processing by InfosController#index as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "infos"  LIMIT 20 OFFSET 0) subquery_for_count[0m
+  [1m[35mInfo Load (0.2ms)[0m  SELECT  "infos".* FROM "infos"   ORDER BY "infos"."created_at" DESC LIMIT 20 OFFSET 0
+  Rendered infos/_info.html.slim (0.8ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "infos"[0m
+  Rendered infos/index.html.slim within layouts/application (5.0ms)
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'  [["user_id", 1]]
+  Rendered share/_user_confirm_required.html.slim (0.4ms)
+Completed 200 OK in 30ms (Views: 24.9ms | ActiveRecord: 2.2ms | Elasticsearch: 0.0ms)
+
+
+Started GET "/topics" for 127.0.0.1 at 2014-06-12 21:31:05 +0800
+Processing by TopicsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "topics"  WHERE "topics"."trashed" = 'f' LIMIT 20 OFFSET 0) subquery_for_count
+  [1m[36mTopic Load (0.4ms)[0m  [1mSELECT  "topics".* FROM "topics"  WHERE "topics"."trashed" = 'f'  ORDER BY "topics"."hot" DESC LIMIT 20 OFFSET 0[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (1, 2)
+  [1m[36mCategory Load (0.4ms)[0m  [1mSELECT "categories".* FROM "categories"  WHERE "categories"."id" IN (1, 2)[0m
+  Rendered topics/_topic.html.slim (4.0ms)
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "topics"  WHERE "topics"."trashed" = 'f'
+  Rendered topics/_search_form.html.slim (0.7ms)
+  [1m[36mCategory Load (0.7ms)[0m  [1mSELECT "categories".* FROM "categories"  WHERE "categories"."slug" = 'T'  ORDER BY "categories"."topics_count" DESC[0m
+  Rendered topics/index.html.slim within layouts/application (17.4ms)
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'  [["user_id", 1]]
+  Rendered share/_user_confirm_required.html.slim (0.3ms)
+Completed 200 OK in 46ms (Views: 38.8ms | ActiveRecord: 4.1ms | Elasticsearch: 0.0ms)
+
+
+Started GET "/infos" for 127.0.0.1 at 2014-06-12 21:31:06 +0800
+Processing by InfosController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "infos"  LIMIT 20 OFFSET 0) subquery_for_count
+  [1m[36mInfo Load (0.5ms)[0m  [1mSELECT  "infos".* FROM "infos"   ORDER BY "infos"."created_at" DESC LIMIT 20 OFFSET 0[0m
+  Rendered infos/_info.html.slim (1.2ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "infos"
+  Rendered infos/index.html.slim within layouts/application (7.7ms)
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'[0m  [["user_id", 1]]
+  Rendered share/_user_confirm_required.html.slim (0.8ms)
+Completed 200 OK in 34ms (Views: 29.6ms | ActiveRecord: 2.2ms | Elasticsearch: 0.0ms)
+
+
+Started GET "/infos" for 127.0.0.1 at 2014-06-12 21:31:10 +0800
+Processing by InfosController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "infos"  LIMIT 20 OFFSET 0) subquery_for_count[0m
+  [1m[35mInfo Load (0.3ms)[0m  SELECT  "infos".* FROM "infos"   ORDER BY "infos"."created_at" DESC LIMIT 20 OFFSET 0
+  Rendered infos/_info.html.slim (1.2ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "infos"[0m
+  Rendered infos/index.html.slim within layouts/application (7.3ms)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'  [["user_id", 2]]
+  Rendered share/_user_confirm_required.html.slim (0.4ms)
+Completed 200 OK in 38ms (Views: 33.6ms | ActiveRecord: 1.9ms | Elasticsearch: 0.0ms)
+
+
+Started GET "/topics" for 127.0.0.1 at 2014-06-12 21:31:11 +0800
+Processing by TopicsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "topics"  WHERE "topics"."trashed" = 'f' LIMIT 20 OFFSET 0) subquery_for_count
+  [1m[36mTopic Load (0.3ms)[0m  [1mSELECT  "topics".* FROM "topics"  WHERE "topics"."trashed" = 'f'  ORDER BY "topics"."hot" DESC LIMIT 20 OFFSET 0[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (1, 2)
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT "categories".* FROM "categories"  WHERE "categories"."id" IN (1, 2)[0m
+  Rendered topics/_topic.html.slim (5.4ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "topics"  WHERE "topics"."trashed" = 'f'
+  Rendered topics/_search_form.html.slim (1.0ms)
+  [1m[36mCategory Load (0.5ms)[0m  [1mSELECT "categories".* FROM "categories"  WHERE "categories"."slug" = 'T'  ORDER BY "categories"."topics_count" DESC[0m
+  Rendered topics/index.html.slim within layouts/application (19.9ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'  [["user_id", 2]]
+  Rendered share/_user_confirm_required.html.slim (0.6ms)
+Completed 200 OK in 49ms (Views: 43.2ms | ActiveRecord: 2.6ms | Elasticsearch: 0.0ms)
+
+
+Started GET "/infos" for 127.0.0.1 at 2014-06-12 21:31:12 +0800
+Processing by InfosController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.4ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "infos"  LIMIT 20 OFFSET 0) subquery_for_count
+  [1m[36mInfo Load (0.4ms)[0m  [1mSELECT  "infos".* FROM "infos"   ORDER BY "infos"."created_at" DESC LIMIT 20 OFFSET 0[0m
+  Rendered infos/_info.html.slim (0.9ms)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "infos"
+  Rendered infos/index.html.slim within layouts/application (6.2ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'[0m  [["user_id", 2]]
+  Rendered share/_user_confirm_required.html.slim (0.4ms)
+Completed 200 OK in 30ms (Views: 26.5ms | ActiveRecord: 1.7ms | Elasticsearch: 0.0ms)
+
+
+Started GET "/topics" for 127.0.0.1 at 2014-06-12 21:31:13 +0800
+Processing by TopicsController#index as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "topics"  WHERE "topics"."trashed" = 'f' LIMIT 20 OFFSET 0) subquery_for_count[0m
+  [1m[35mTopic Load (0.7ms)[0m  SELECT  "topics".* FROM "topics"  WHERE "topics"."trashed" = 'f'  ORDER BY "topics"."hot" DESC LIMIT 20 OFFSET 0
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (1, 2)[0m
+  [1m[35mCategory Load (0.6ms)[0m  SELECT "categories".* FROM "categories"  WHERE "categories"."id" IN (1, 2)
+  Rendered topics/_topic.html.slim (9.1ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "topics"  WHERE "topics"."trashed" = 'f'[0m
+  Rendered topics/_search_form.html.slim (1.4ms)
+  [1m[35mCategory Load (0.4ms)[0m  SELECT "categories".* FROM "categories"  WHERE "categories"."slug" = 'T'  ORDER BY "categories"."topics_count" DESC
+  Rendered topics/index.html.slim within layouts/application (30.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'[0m  [["user_id", 2]]
+  Rendered share/_user_confirm_required.html.slim (0.3ms)
+Completed 200 OK in 58ms (Views: 47.6ms | ActiveRecord: 5.0ms | Elasticsearch: 0.0ms)
+
+
+Started POST "/users/confirmation" for 127.0.0.1 at 2014-06-12 21:31:13 +0800
+Processing by Users::ConfirmationsController#create as JS
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  Rendered users/confirmations/create.js.erb (0.2ms)
+Completed 200 OK in 14ms (Views: 6.4ms | ActiveRecord: 0.6ms | Elasticsearch: 0.0ms)
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  Rendered user_mailer/confirmation.html.slim (31.4ms)
+  Rendered user_mailer/confirmation.text.erb (2.2ms)
+
+UserMailer#confirmation: processed outbound mail in 145.8ms
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-06-12 21:31:17 +0800
+Processing by PostsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.8ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "posts"  WHERE "posts"."trashed" = 'f' LIMIT 20 OFFSET 0) subquery_for_count
+  [1m[36mPost Load (1.2ms)[0m  [1mSELECT  "posts".* FROM "posts"  WHERE "posts"."trashed" = 'f'  ORDER BY "posts"."hot" DESC LIMIT 20 OFFSET 0[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"  WHERE "users"."id" IN (2, 1)
+  [1m[36mCategory Load (0.5ms)[0m  [1mSELECT "categories".* FROM "categories"  WHERE "categories"."id" IN (3, 4)[0m
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM "posts"  WHERE "posts"."trashed" = 'f'
+  Rendered posts/_search_form.html.slim (4.8ms)
+  [1m[36mCategory Load (0.8ms)[0m  [1mSELECT "categories".* FROM "categories"  WHERE "categories"."slug" = 'S'  ORDER BY "categories"."topics_count" DESC[0m
+  Rendered posts/index.html.slim within layouts/application (71.5ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'  [["user_id", 2]]
+  Rendered share/_user_confirm_required.html.slim (0.5ms)
+Completed 200 OK in 115ms (Views: 89.8ms | ActiveRecord: 7.0ms | Elasticsearch: 0.0ms)
+
+
+Started GET "/infos" for 127.0.0.1 at 2014-06-12 21:31:18 +0800
+Processing by InfosController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.5ms)[0m  SELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "infos"  LIMIT 20 OFFSET 0) subquery_for_count
+  [1m[36mInfo Load (0.4ms)[0m  [1mSELECT  "infos".* FROM "infos"   ORDER BY "infos"."created_at" DESC LIMIT 20 OFFSET 0[0m
+  Rendered infos/_info.html.slim (1.7ms)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "infos"
+  Rendered infos/index.html.slim within layouts/application (7.9ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'[0m  [["user_id", 2]]
+  Rendered share/_user_confirm_required.html.slim (0.7ms)
+Completed 200 OK in 43ms (Views: 38.7ms | ActiveRecord: 1.9ms | Elasticsearch: 0.0ms)
+
+
+Started GET "/topics" for 127.0.0.1 at 2014-06-12 21:31:39 +0800
+Processing by TopicsController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "topics"  WHERE "topics"."trashed" = 'f' LIMIT 20 OFFSET 0) subquery_for_count[0m
+  [1m[35mTopic Load (0.5ms)[0m  SELECT  "topics".* FROM "topics"  WHERE "topics"."trashed" = 'f'  ORDER BY "topics"."hot" DESC LIMIT 20 OFFSET 0
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (1, 2)[0m
+  [1m[35mCategory Load (0.4ms)[0m  SELECT "categories".* FROM "categories"  WHERE "categories"."id" IN (1, 2)
+  Rendered topics/_topic.html.slim (5.0ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "topics"  WHERE "topics"."trashed" = 'f'[0m
+  Rendered topics/_search_form.html.slim (1.3ms)
+  [1m[35mCategory Load (0.5ms)[0m  SELECT "categories".* FROM "categories"  WHERE "categories"."slug" = 'T'  ORDER BY "categories"."topics_count" DESC
+  Rendered topics/index.html.slim within layouts/application (21.1ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'[0m  [["user_id", 1]]
+  Rendered share/_user_confirm_required.html.slim (0.5ms)
+Completed 200 OK in 53ms (Views: 45.6ms | ActiveRecord: 3.4ms | Elasticsearch: 0.0ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-06-12 21:31:39 +0800
+Processing by PostsController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "posts"  WHERE "posts"."trashed" = 'f' LIMIT 20 OFFSET 0) subquery_for_count[0m
+  [1m[35mPost Load (0.8ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."trashed" = 'f'  ORDER BY "posts"."hot" DESC LIMIT 20 OFFSET 0
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (2, 1)[0m
+  [1m[35mCategory Load (0.4ms)[0m  SELECT "categories".* FROM "categories"  WHERE "categories"."id" IN (3, 4)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "posts"  WHERE "posts"."trashed" = 'f'[0m
+  Rendered posts/_search_form.html.slim (0.5ms)
+  [1m[35mCategory Load (0.5ms)[0m  SELECT "categories".* FROM "categories"  WHERE "categories"."slug" = 'S'  ORDER BY "categories"."topics_count" DESC
+  Rendered posts/index.html.slim within layouts/application (22.5ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'[0m  [["user_id", 1]]
+  Rendered share/_user_confirm_required.html.slim (0.9ms)
+Completed 200 OK in 56ms (Views: 48.5ms | ActiveRecord: 3.8ms | Elasticsearch: 0.0ms)
+
+
+Started GET "/topics" for 127.0.0.1 at 2014-06-12 21:31:39 +0800
+Processing by TopicsController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "topics"  WHERE "topics"."trashed" = 'f' LIMIT 20 OFFSET 0) subquery_for_count[0m
+  [1m[35mTopic Load (0.6ms)[0m  SELECT  "topics".* FROM "topics"  WHERE "topics"."trashed" = 'f'  ORDER BY "topics"."hot" DESC LIMIT 20 OFFSET 0
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"  WHERE "users"."id" IN (1, 2)[0m
+  [1m[35mCategory Load (0.3ms)[0m  SELECT "categories".* FROM "categories"  WHERE "categories"."id" IN (1, 2)
+  Rendered topics/_topic.html.slim (56.2ms)
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "topics"  WHERE "topics"."trashed" = 'f'[0m
+  Rendered topics/_search_form.html.slim (0.6ms)
+  [1m[35mCategory Load (0.5ms)[0m  SELECT "categories".* FROM "categories"  WHERE "categories"."slug" = 'T'  ORDER BY "categories"."topics_count" DESC
+  Rendered topics/index.html.slim within layouts/application (71.6ms)
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'[0m  [["user_id", 1]]
+  Rendered share/_user_confirm_required.html.slim (0.5ms)
+Completed 200 OK in 113ms (Views: 105.4ms | ActiveRecord: 3.6ms | Elasticsearch: 0.0ms)
+
+
+Started GET "/infos" for 127.0.0.1 at 2014-06-12 21:31:40 +0800
+Processing by InfosController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(count_column) FROM (SELECT  1 AS count_column FROM "infos"  LIMIT 20 OFFSET 0) subquery_for_count[0m
+  [1m[35mInfo Load (0.4ms)[0m  SELECT  "infos".* FROM "infos"   ORDER BY "infos"."created_at" DESC LIMIT 20 OFFSET 0
+  Rendered infos/_info.html.slim (0.8ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "infos"[0m
+  Rendered infos/index.html.slim within layouts/application (6.1ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "notifications"  WHERE "notifications"."user_id" = $1 AND "notifications"."read" = 'f'  [["user_id", 1]]
+  Rendered share/_user_confirm_required.html.slim (0.4ms)
+Completed 200 OK in 37ms (Views: 32.2ms | ActiveRecord: 1.8ms | Elasticsearch: 0.0ms)
+
+Sent mail to 2567990266@qq.com (30017.5ms)
+Date: Thu, 12 Jun 2014 21:31:16 +0800
+From: no-reply@wgaokao.org
+To: 2567990266@qq.com
+Message-ID: <5399aba474542_1dc45bf3387567a@zhangsm-Lenovo-G470.mail>
+Subject: =?UTF-8?Q?=E9=82=AE=E7=AE=B1=E7=A1=AE=E8=AE=A4?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5399aba471ce7_1dc45bf33875521";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5399aba471ce7_1dc45bf33875521
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+5pyJ5Lq65L2/55So5L2g55qE6YKu566x5ZyoIGxvY2FsaG9zdDozMDAwIOaz
+qOWGjOW4kOWPt++8jOWmguaenOS4jeaYr+S9oO+8jOivt+W/veeVpeatpOmC
+ruS7tuOAggoK54K55Ye75LiL6Z2i55qE6ZO+5o6l56Gu6K6k6YKu566x5Zyw
+5Z2A77yaCgpodHRwOi8vbG9jYWxob3N0OjMwMDAvdXNlcnMvY29uZmlybWF0
+aW9uP3Rva2VuPUJBaGJCMmtIU1hVNkNWUnBiV1VOalpVY2dIOFBCMzBLT2cx
+dVlXNXZYMjUxYldrQ2F3RTZEVzVoYm05ZlpHVnVhUVk2RFhOMVltMXBZM0p2
+SWdjMk1Eb0xiMlptYzJWMGFRS0FjRG9KZW05dVpVa2lDRU5UVkFZNkJrVlUt
+LWQ1NmZkY2NmYWIwN2M0ZmFlMTM2OGI1N2NlNDVkYmUyN2VmNTc3ZmUKCg==
+
+----==_mimepart_5399aba471ce7_1dc45bf33875521
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+PHA+5pyJ5Lq65L2/55So5L2g55qE6YKu566x5ZyoIGxvY2FsaG9zdDozMDAw
+IOazqOWGjOW4kOWPt++8jOWmguaenOS4jeaYr+S9oO+8jOivt+W/veeVpeat
+pOmCruS7tuOAgjwvcD4KCjxwPueCueWHu+S4i+mdoueahOmTvuaOpeehruiu
+pOmCrueuseWcsOWdgO+8mjwvcD4KCjxwPjxhIGhyZWY9Imh0dHA6Ly9sb2Nh
+bGhvc3Q6MzAwMC91c2Vycy9jb25maXJtYXRpb24/dG9rZW49QkFoYkIya0hT
+WFU2Q1ZScGJXVU5qWlVjZ0NIWEJuMEtPZzF1WVc1dlgyNTFiV2tDeEFFNkRX
+NWhibTlmWkdWdWFRWTZEWE4xWW0xcFkzSnZJZ2RGSURvTGIyWm1jMlYwYVFL
+QWNEb0plbTl1WlVraUNFTlRWQVk2QmtWVS0tMzJjMDhjYTBiYTNkNTJkM2Mz
+ZTI3M2VkZDk3ZjY2MDVlMWU0YTY2YiI+aHR0cDovL2xvY2FsaG9zdDozMDAw
+L3VzZXJzL2NvbmZpcm1hdGlvbj90b2tlbj1CQWhiQjJrSFNYVTZDVlJwYldV
+TmpaVWNnQ0hYQm4wS09nMXVZVzV2WDI1MWJXa0N4QUU2RFc1aGJtOWZaR1Z1
+YVFZNkRYTjFZbTFwWTNKdklnZEZJRG9MYjJabWMyVjBhUUtBY0RvSmVtOXVa
+VWtpQ0VOVFZBWTZCa1ZVLS0zMmMwOGNhMGJhM2Q1MmQzYzNlMjczZWRkOTdm
+NjYwNWUxZTRhNjZiPC9hPjwvcD4K
+
+----==_mimepart_5399aba471ce7_1dc45bf33875521--
+
+Unable to deliver email [confirmation]: execution expired
+/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/net/smtp.rb:541:in `initialize'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/net/smtp.rb:541:in `open'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/net/smtp.rb:541:in `tcp_socket'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/net/smtp.rb:551:in `block in do_start'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/timeout.rb:91:in `block in timeout'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/timeout.rb:101:in `call'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/timeout.rb:101:in `timeout'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/net/smtp.rb:550:in `do_start'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/net/smtp.rb:520:in `start'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/mail-2.5.4/lib/mail/network/delivery_methods/smtp.rb:112:in `deliver!'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/mail-2.5.4/lib/mail/message.rb:2129:in `do_delivery'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/mail-2.5.4/lib/mail/message.rb:232:in `block in deliver'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/actionmailer-4.1.1/lib/action_mailer/base.rb:527:in `block in deliver_mail'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/activesupport-4.1.1/lib/active_support/notifications.rb:159:in `block in instrument'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/activesupport-4.1.1/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/activesupport-4.1.1/lib/active_support/notifications.rb:159:in `instrument'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/actionmailer-4.1.1/lib/action_mailer/base.rb:525:in `deliver_mail'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/mail-2.5.4/lib/mail/message.rb:232:in `deliver'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/resque_mailer-2.2.6/lib/resque_mailer.rb:49:in `perform'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/resque-1.25.1/lib/resque/job.rb:227:in `perform'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/resque-1.25.1/lib/resque/worker.rb:250:in `perform'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/resque-1.25.1/lib/resque/worker.rb:189:in `block in work'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/resque-1.25.1/lib/resque/worker.rb:166:in `loop'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/resque-1.25.1/lib/resque/worker.rb:166:in `work'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/resque-1.25.1/lib/resque/tasks.rb:41:in `block (2 levels) in <top (required)>'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/task.rb:240:in `call'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/task.rb:240:in `block in execute'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/task.rb:235:in `each'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/task.rb:235:in `execute'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/task.rb:179:in `block in invoke_with_call_chain'
+	/home/zhangsm/.rvm/rubies/ruby-2.1.1/lib/ruby/2.1.0/monitor.rb:211:in `mon_synchronize'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/task.rb:172:in `invoke_with_call_chain'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/task.rb:165:in `invoke'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:150:in `invoke_task'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:106:in `block (2 levels) in top_level'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:106:in `each'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:106:in `block in top_level'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:115:in `run_with_threads'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:100:in `top_level'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:78:in `block in run'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:176:in `standard_exception_handling'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/lib/rake/application.rb:75:in `run'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/gems/rake-10.3.2/bin/rake:33:in `<top (required)>'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/bin/rake:23:in `load'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/bin/rake:23:in `<main>'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/bin/ruby_executable_hooks:15:in `eval'
+	/home/zhangsm/.rvm/gems/ruby-2.1.1/bin/ruby_executable_hooks:15:in `<main>'

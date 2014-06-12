@@ -1,0 +1,21 @@
+- @page_title = @info.title
+
+.main
+  .container
+    .row
+      .col-md-12
+        .panel
+          .panel-heading
+            h1.panel-title = @info.title
+          .panel-body
+            - cache [@info, locale] do
+              .list-group.list-group-campo
+                .list-group-item.comment data-creator-id=@info.id
+                  .list-group-item-content
+                    .list-group-item-heading
+                        = time_ago_tag @info.created_at
+                    .list-group-item-heading
+                      'form:
+                      =  @info.source
+                    article.comment-body
+                      = markdown_format @info.body
