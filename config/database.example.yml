@@ -25,7 +25,7 @@ default: &default
 
 development:
   <<: *default
-  database: gaokao
+  database: gaokao_dev
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -50,7 +50,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: gaokao
+  database: gaokao_test
 
 production:
   <<: *default
