@@ -33,7 +33,7 @@
             - cache [@posts, locale] do
               - @posts.in_groups_of(4, false) do |group|
                   - group.each do |post|
-                    .col-md-3 id="post-#{post.id}"
+                    .col-md-3
                       .thumbnail
                         article.comment-body
                           = markdown_format match(post.body)
@@ -53,9 +53,7 @@
                             = post.comments_count
                             '&emsp;
                   .clearfix
-          - else
-            .list-group-item.text-center.text-muted.empty-message
-              = t '.no_post_yet'
+
         - if @posts.total_pages > 1
           .panel-footer.clearfix
             .pull-right

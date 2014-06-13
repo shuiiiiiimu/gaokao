@@ -58,9 +58,9 @@ sudo sed -i "s/USER=\w\+/USER=$USER/" /etc/init.d/resque
 sudo update-rc.d resque defaults
 
 # Nginx config
-sudo cp config/nginx.example.conf /etc/nginx/sites-available/campo
-sudo sed -i "s|root .\+;|root $APP_ROOT/current/public;|" /etc/nginx/sites-available/campo
-sudo ln -s /etc/nginx/sites-available/campo /etc/nginx/sites-enabled
+sudo cp config/nginx.example.conf /etc/nginx/sites-available/wgaokao
+sudo sed -i "s|root .\+;|root $APP_ROOT/current/public;|" /etc/nginx/sites-available/wgaokao
+sudo ln -s /etc/nginx/sites-available/wgaokao /etc/nginx/sites-enabled
 sudo rm /etc/nginx/sites-enabled/default
 sudo sed -i 's/# passenger_root/passenger_root/' /etc/nginx/nginx.conf
 sudo sed -i "s|# passenger_ruby .\+;|passenger_ruby /home/$USER/.rvm/wrappers/default/ruby;|" /etc/nginx/nginx.conf

@@ -5,6 +5,7 @@ module PostsHelper
 
   def match(str)
     r = /\!\[.*\]\((.+)\)/
-    r.match(str)[0].to_s
+    res = r.match(str)[0].to_s if r.match(str)
+    res ||= str.to_s[0..150]
   end
 end
