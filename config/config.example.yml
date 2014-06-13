@@ -5,12 +5,11 @@ default: &default
   mailer:
     # For localhost postfix
     smtp_settings:
-      address: smtp.gmail.com
-      port: 587
+      address: smtp.mailgun.org
+      port: 25
       enable_starttls_auto: true
-      domain: gmail.com
-      # user_name: "****@gmail.com"
-      # password: "*****"  # longin your gmail
+      # user_name: ******.mailgun.org
+      # password: 2****j29
       authentication: plain
     default_options:
       from: no-reply@wgaokao.org
