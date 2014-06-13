@@ -6,11 +6,9 @@ With a theme of contracted the community interaction, promotes the communication
 
 Read document here: https://github.com/chloerei/campo/wiki
 
-## Donate
+## Thanks
 
-Buy me some Instant noodles:
-
-http://chloerei.com/donate/
+ @chloerei , https://github.com/chloerei/campo
 
 ## License
 
