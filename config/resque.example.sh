@@ -1,19 +1,19 @@
 #!/bin/bash
 
 ### BEGIN INIT INFO
-# Provides:          Campo
+# Provides:          wgaokao
 # Required-Start:    $all
 # Required-Stop:     $network $local_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Start the Campo resque worker at boot
-# Description:       Enable Campo at boot time.
+# Short-Description: Start the wgaokao resque worker at boot
+# Description:       Enable wgaokao at boot time.
 ### END INIT INFO
 
 set -e
 set -u
 
-APP_ROOT=/var/www/campo/current
+APP_ROOT=/var/www/wgaokao/current
 USER=deploy
 
 TIMEOUT=${TIMEOUT-60}

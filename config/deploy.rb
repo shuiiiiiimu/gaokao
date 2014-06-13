@@ -1,9 +1,12 @@
 # config valid only for Capistrano 3.1
 lock '3.1.0'
 
-set :application, 'wgaokao'
-set :repo_url, 'https://github.com/zhangsm/gaokao.git'
-set :deploy_to, -> { "/var/www/#{fetch(:application)}.org" }
+set :application, "wgaokao"
+set :repo_url, "git://github.com/zhangsm/gaokao.git"
+set :deploy_to, -> { "/var/www/#{fetch(:application)}" }
+set :branch, "master"
+set :scm, :git
+set :user, "deploy"
 set :rails_env, 'production'
 
 set :linked_files, %w{config/database.yml config/config.yml config/secrets.yml}
